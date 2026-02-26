@@ -2,6 +2,8 @@ import { supabase } from '@/lib/supabase'
 import { NextResponse } from 'next/server'
 
 export async function GET(request: Request) {
+  if (!supabase) return NextResponse.json([], { status: 200 })
+
   const { searchParams } = new URL(request.url)
   const categoryId = searchParams.get('category_id')
 
@@ -21,6 +23,8 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  if (!supabase) return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
+
   const body = await request.json()
 
   const { data, error } = await supabase
