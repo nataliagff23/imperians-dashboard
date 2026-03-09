@@ -61,12 +61,16 @@ export default function HomePage() {
         <SearchBar value={search} onChange={setSearch} />
 
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {[1, 2, 3].map(i => (
-              <div
-                key={i}
-                className="bg-surface rounded-xl border border-border-subtle h-48 animate-pulse"
-              />
+          <div className="mt-10 space-y-8">
+            {[1, 2].map(i => (
+              <div key={i}>
+                <div className="h-5 w-48 bg-surface rounded animate-pulse mb-5" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {[1, 2, 3].map(j => (
+                    <div key={j} className="bg-surface rounded-xl border border-border-subtle h-32 animate-pulse" />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         ) : filtered.length === 0 ? (
@@ -76,7 +80,7 @@ export default function HomePage() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          <div className="mt-10">
             {filtered.map(category => (
               <CategoryCard key={category.id} category={category} />
             ))}

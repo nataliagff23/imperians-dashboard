@@ -11,29 +11,30 @@ export function CategoryCard({ category }: CategoryCardProps) {
   const links = category.links ?? []
 
   return (
-    <div
-      className="bg-surface rounded-xl border border-border-subtle overflow-hidden hover:border-border-subtle/80 transition-colors"
-      style={{ borderLeftColor: category.color, borderLeftWidth: '3px' }}
-    >
-      <div className="px-4 py-3 flex items-center gap-2.5 border-b border-border-subtle">
+    <section className="mb-10">
+      <div className="flex items-center gap-3 mb-5">
         <div
-          className="w-8 h-8 rounded-lg flex items-center justify-center"
+          className="w-9 h-9 rounded-lg flex items-center justify-center"
           style={{ backgroundColor: category.color + '20' }}
         >
-          <Icon className="w-4 h-4" style={{ color: category.color }} />
+          <Icon className="w-4.5 h-4.5" style={{ color: category.color }} />
         </div>
-        <h2 className="font-semibold text-text-primary">{category.name}</h2>
-        <span className="ml-auto text-xs text-text-muted">
+        <h2 className="text-lg font-bold text-text-primary">{category.name}</h2>
+        <div className="flex-1 h-px bg-border-subtle ml-2" />
+        <span className="text-xs text-text-muted">
           {links.length} {links.length === 1 ? 'link' : 'links'}
         </span>
       </div>
-      <div className="p-2">
-        {links.length === 0 ? (
-          <p className="text-sm text-text-muted px-3 py-2">Sin links aún</p>
-        ) : (
-          links.map((link) => <LinkItem key={link.id} link={link} />)
-        )}
-      </div>
-    </div>
+
+      {links.length === 0 ? (
+        <p className="text-sm text-text-muted px-1">Sin links aún</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {links.map((link) => (
+            <LinkItem key={link.id} link={link} color={category.color} />
+          ))}
+        </div>
+      )}
+    </section>
   )
 }

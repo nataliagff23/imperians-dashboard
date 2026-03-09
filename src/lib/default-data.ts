@@ -3,7 +3,7 @@ import type { Category } from './types'
 export const defaultCategories: Category[] = [
   {
     id: 'cat-1',
-    name: 'Herramientas de Proyecciones',
+    name: 'Herramientas',
     slug: 'herramientas-de-proyecciones',
     icon: 'calculator',
     color: '#c9a84c',
